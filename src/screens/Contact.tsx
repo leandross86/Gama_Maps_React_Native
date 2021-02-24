@@ -4,6 +4,7 @@ import LottieView from 'lottie-react-native';
 import { Feather } from '@expo/vector-icons'
 import logoAccenture from '../images/Accenture.png'
 import { RectButton } from 'react-native-gesture-handler';
+import { contactSend } from '../service'
 
 export default function Contact() {
   const [name, setName] = useState('')
@@ -11,6 +12,24 @@ export default function Contact() {
   const [phone, setPhone] = useState('')
   const [text, setText] = useState('')
   const [isSendMessage, setIsSendMessage] = useState(false)
+
+  function sendAccentureMessage() {
+    const postData = {
+      name,
+      phone,
+      email,
+      text
+    }
+    contactSend.post('', postData).then(
+      response => {
+        setIsSendMessage(true)
+        setName('')
+        setEmail('')
+        setPhone('')
+        setText('')
+      }
+    )
+  }
 
   return (
     <ScrollView style={styles.scrollView}>
@@ -40,21 +59,31 @@ export default function Contact() {
               <Text style={styles.labelForm}>Seu nome: </Text>
               <TextInput 
                 style={styles.inputForm}
+                value={name}
+                onChangeText={text => setName(text)}
               />
               <Text style={styles.labelForm}>Seu telefone: </Text>
               <TextInput 
                 style={styles.inputForm}
+                value={phone}
+                onChangeText={text => setPhone(text)}
               />
               <Text style={styles.labelForm}>Seu email: </Text>
               <TextInput 
                 style={styles.inputForm}
+                value={email}
+                onChangeText={text => setEmail(text)}
               />
               <Text style={styles.labelForm}>Deixe sua mensagem: </Text>
               <TextInput 
                 style={styles.inputFormMultiline}
+                value={text}
+                onChangeText={text => setText(text)}
                 multiline
               />
-              <RectButton style={styles.sendButton}>
+              <RectButton style={styles.sendButton}
+                onPress={sendAccentureMessage}
+              >
                 <Text style={styles.textSendButton}>Enviar mensagem</Text>
                 <Feather name='send' size={20} color='#a100ff'/>
               </RectButton>
