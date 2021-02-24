@@ -24,7 +24,7 @@ export default function Route() {
           component={Accenture}
           options={{
             headerShown: true,
-            header: () => <Header title={"teste"} showCancel={true} />,
+            header: () => <Header title={"Home"} showCancel={false} />,
           }}
         />
         <Screen
@@ -32,7 +32,7 @@ export default function Route() {
           component={Contact}
           options={{
             headerShown: true,
-            header: () => <Header showCancel={true} title={"teste"}/>,
+            header: () => <Header showCancel={true} title={"Contato"}/>,
           }}
         />
       </Navigator>

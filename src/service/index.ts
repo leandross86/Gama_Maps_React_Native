@@ -5,5 +5,5 @@ export const contactSend =  axios.create({
 })
 
 export const getData = axios.create({
-  baseURL: 'https://accenture-server-rn.herokuapp.com/all'
+  baseURL: 'https://accenture-server-rn.herokuapp.com/'
 })
